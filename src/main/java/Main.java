@@ -8,10 +8,10 @@ public class Main {
         System.out.println("***Second***");
         checkSumSing();
         System.out.println(" ");
-        System.out.println("***Second***");
+        System.out.println("***Third***");
         printColor();
         System.out.println(" ");
-        System.out.println("***Third***");
+        System.out.println("***Fourth***");
         compareNumbers();
     }
 
