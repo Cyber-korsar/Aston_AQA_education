@@ -4,13 +4,10 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("***First***");
         printThreeWords();
-        System.out.println(" ");
         System.out.println("***Second***");
         checkSumSing();
-        System.out.println(" ");
         System.out.println("***Third***");
         printColor();
-        System.out.println(" ");
         System.out.println("***Fourth***");
         compareNumbers();
     }
@@ -35,9 +32,9 @@ public class Main {
     public static void printColor() {
         int value;
         value = new Random().nextInt();
-        if (value <= 1) System.out.println("Крассный");
-        if (value > 0 && value < 101) System.out.println("Желтый");
-        if (value > 100) System.out.println("Зелёный");
+        if (value <= 0) System.out.println("Красный");
+        if (value > 0 && value <= 100) System.out.println("Желтый");
+        else System.out.println("Зелёный");
     }
 
     public static void compareNumbers() {
