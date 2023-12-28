@@ -1,8 +1,3 @@
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class Staff {
     String fullName;
     String jobTitle;
@@ -20,7 +15,7 @@ public class Staff {
         this.age = age;
     }
 
-    public static Staff[] staff() {
+    static Staff[] staff() {
         Staff[] staffArray = new Staff[5];
         staffArray[0] = new Staff("Ivanov Ivan", "Engineer", "ivivan@mailbox.com", "892312312", 30000, 30);
         staffArray[1] = new Staff("Koval Tatiana", "Engineer", "kovtatiana@mailbox.com", "892312312", 27000, 36);
@@ -30,8 +25,7 @@ public class Staff {
         return staffArray;
     }
 
-    public static void printStaffAll(Staff[] staff) {
-
+    static void printStaffAll(Staff[] staff) {
         int count = staff.length;
         int n = 0;
         while (n < count) {
@@ -40,23 +34,47 @@ public class Staff {
         }
     }
 
-    public static String printStaff(Staff[] staff, int n) {
+    static String printStaff(Staff[] staff, int n) {
         StringBuffer printPerson = new StringBuffer();
-        printPerson.append("Full Name: ").append(staff[n].fullName)
+        printPerson.append("Full Name: ").append(staff[n].getFullName())
                 .append("\n")
-                .append("Job title: ").append(staff[n].jobTitle)
+                .append("Job title: ").append(staff[n].getJobTitle())
                 .append("\n")
-                .append("Email: ").append(staff[n].email)
+                .append("Email: ").append(staff[n].getEmail())
                 .append("\n")
-                .append("Phone: ").append(staff[n].phone)
+                .append("Phone: ").append(staff[n].getPhone())
                 .append("\n")
-                .append("Salary: ").append(staff[n].salary)
+                .append("Salary: ").append(staff[n].getSalary())
                 .append("\n")
-                .append("Age: ").append(staff[n].age).append("\n\n");
+                .append("Age: ").append(staff[n].getAge()).append("\n");
         return printPerson.toString();
     }
 
     public static void main(String[] args) {
         printStaffAll(staff());
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public int getAge() {
+        return age;
     }
 }
