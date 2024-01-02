@@ -1,4 +1,8 @@
 public class Animal {
+    public String getName() {
+        return name;
+    }
+
     String name;
     static int animalCount;
     int runLimit;
@@ -8,6 +12,7 @@ public class Animal {
         this.name = name;
         this.runLimit = runLimit;
         this.swimLimit = swimLimit;
+        animalCount++;
     }
 
     static void run(Animal animal, int count) {
@@ -17,7 +22,6 @@ public class Animal {
                 runBuild(animal, count);
             } else
                 cantRunBuild(animal, count);
-
         }
         if (animal instanceof Cat) {
             if (count <= animal.runLimit) {
@@ -64,5 +68,9 @@ public class Animal {
             } else
                 cantSwimBuild(animal, count);
         }
+    }
+
+    static void printCreateAnimalCount() {
+        System.out.println("Животных создано " + animalCount);
     }
 }
