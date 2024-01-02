@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Main {
     public static void main(String[] args) {
     }
@@ -90,6 +92,12 @@ public class Main {
             array[i] = initialValue;
             i++;
         }
+        return array;
+    }
+
+    public static int[] initArrayWithClassArray(int len, int initialValue) {
+        int[] array = new int[len];
+        Arrays.fill(array, initialValue);
         return array;
     }
 }
