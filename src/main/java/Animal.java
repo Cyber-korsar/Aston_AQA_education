@@ -1,8 +1,4 @@
 public class Animal {
-    public String getName() {
-        return name;
-    }
-
     String name;
     static int animalCount;
     int runLimit;
@@ -15,59 +11,42 @@ public class Animal {
         animalCount++;
     }
 
-    static void run(Animal animal, int count) {
-
-        if (animal instanceof Dog) {
-            if (count <= animal.runLimit) {
-                runBuild(animal, count);
-            } else
-                cantRunBuild(animal, count);
-        }
-        if (animal instanceof Cat) {
-            if (count <= animal.runLimit) {
-                runBuild(animal, count);
-            } else
-                cantRunBuild(animal, count);
-        }
+    void run(int count) {
+        if (count <= this.runLimit) {
+            runBuild(count);
+        } else
+            cantRunBuild(count);
     }
 
-    static void cantRunBuild(Animal animal, int count) {
+    void cantRunBuild(int count) {
         StringBuffer runMassage = new StringBuffer();
-        runMassage.append(animal.name).append(" ").append("не может пробежать ").append(count).append("м.").append("\nЛимит бега ").append(animal.runLimit).append("м.");
+        runMassage.append(this.name).append(" ").append("не может пробежать ").append(count).append("м.").append("\nЛимит бега ").append(this.runLimit).append("м.");
         System.out.println(runMassage);
     }
 
-    static void runBuild(Animal animal, int count) {
+    void runBuild(int count) {
         StringBuffer runMassage = new StringBuffer();
-        runMassage.append(animal.name).append(" ").append("пробежал").append(" ").append(count).append("м.");
+        runMassage.append(this.name).append(" ").append("пробежал").append(" ").append(count).append("м.");
         System.out.println(runMassage);
     }
 
-    static void cantSwimBuild(Animal animal, int count) {
+    void cantSwimBuild(int count) {
         StringBuffer runMassage = new StringBuffer();
-        runMassage.append(animal.name).append(" ").append("не может проплыть ").append(count).append("м.").append("\nЛимит плавания ").append(animal.swimLimit).append("м.");
+        runMassage.append(this.name).append(" ").append("не может проплыть ").append(count).append("м.").append("\nЛимит плавания ").append(this.swimLimit).append("м.");
         System.out.println(runMassage);
     }
 
-    static void swimBuild(Animal animal, int count) {
+    void swimBuild(int count) {
         StringBuffer runMassage = new StringBuffer();
-        runMassage.append(animal.name).append(" ").append("проплыл").append(" ").append(count).append("м.");
+        runMassage.append(this.name).append(" ").append("проплыл").append(" ").append(count).append("м.");
         System.out.println(runMassage);
     }
 
-    static void swim(Animal animal, int count) {
-        if (animal instanceof Dog) {
-            if (count <= animal.swimLimit) {
-                swimBuild(animal, count);
-            } else
-                cantSwimBuild(animal, count);
-        }
-        if (animal instanceof Cat) {
-            if (count <= animal.swimLimit) {
-                swimBuild(animal, count);
-            } else
-                cantSwimBuild(animal, count);
-        }
+    void swim(Animal animal, int count) {
+        if (count <= this.swimLimit) {
+            swimBuild(count);
+        } else
+            cantSwimBuild(count);
     }
 
     static void printCreateAnimalCount() {

@@ -5,10 +5,6 @@ public class Cat extends Animal {
     boolean satiety;
     static int amountOfFoodInBowl;
 
-    public void isSatiety() {
-        System.out.println(satiety);
-    }
-
     Cat(String name) {
         super(name, LIM_RUN_CAT, LIM_SWIM_CAT);
         this.satiety = false;

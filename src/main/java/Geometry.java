@@ -5,7 +5,6 @@ public class Geometry {
     double square;
     double perimeter;
 
-
     Geometry(String colourBackground, String borderColor, double radius) {
         this.figure = "круга";
         this.colourBackground = colourBackground;
