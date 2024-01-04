@@ -22,11 +22,12 @@ public class Main {
         Dog.printCreateDogCount();
         Cat.printCreateCatCount();
         Animal.printCreateAnimalCount();
-        Geometry circle = new Geometry("Красный", "Чёрный", 45);
+
+        Circle circle = new Circle("red", "Black", 1);
         System.out.println(circle.printFigure());
-        Geometry rectangle = new Geometry("Красный", "Чёрный", 13, 12);
+        Rectangle rectangle = new Rectangle("Чёрный", "Жёлтый", 1, 1.1);
         System.out.println(rectangle.printFigure());
-        Geometry triangle = new Geometry("Красный", "Чёрный", 13, 12, 15);
+        Triangle triangle = new Triangle("Красный", "Чёрный", 13, 12, 15);
         System.out.println(triangle.printFigure());
     }
 }

@@ -1,4 +1,4 @@
-public interface GeometricСalculations {
+public interface GeometricCalculations {
     double pi = 3.14;
 
     static double squareCircle(double r) {
@@ -23,6 +23,6 @@ public interface GeometricСalculations {
 
     static double squareTriangle(double sideA, double sideB, double sideC) {
         double perimeter = perimeterTriangle(sideA, sideB, sideC);
-        return Math.sqrt((perimeter * (perimeter + sideA) * (perimeter - sideB) * (perimeter - sideC)));
+        return Math.sqrt((perimeter * (perimeter - sideA) * (perimeter - sideB) * (perimeter - sideC)));//Формула Герона
     }
 }
