@@ -15,15 +15,15 @@ public class Reader {
         while (scanner.hasNextLine()) {
             data.add(scanner.nextLine());
         }
-        int[][] data_result = new int[data.size()][header_result.length];
-        for (int i = 0; i < data_result.length; i++) {
+        int[][] dataInput = new int[data.size()][header_result.length];
+        for (int i = 0; i < dataInput.length; i++) {
             String[] data_string = data.get(i).split(";");
             for (int j = 0; j < data_string.length; j++) {
-                data_result[i][j] = Integer.parseInt(data_string[j]);
+                dataInput[i][j] = Integer.parseInt(data_string[j]);
             }
         }
         scanner.close();
-        return new AppData(header_result, data_result);} catch (IOException ex) {
+        return new AppData(header_result, dataInput);} catch (IOException ex) {
             System.out.println(ex.getMessage());
         }return null;
     }
