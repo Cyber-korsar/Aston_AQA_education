@@ -1,28 +1,19 @@
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class Students {
-    public static void main(String[] args) {
-
-
-        Collection<Student> students = Arrays.asList(
-                new Student("Дмитрий", 17, Gender.MAN),
-                new Student("Максим", 20, Gender.MAN),
-                new Student("Екатерина", 20, Gender.WOMAN),
-                new Student("Пётр", 20, Gender.MAN),
-                new Student("Михаил", 28, Gender.MAN)
-        );
-        // средний возраст
+    void printAverageAge(Collection<Student> students) {
         System.out.println(students.stream()
-                .filter(a -> a.getGender() == Gender.MAN)
+                .filter(s -> s.getGender() == Gender.MAN)
                 .mapToInt(Student::getAge)
                 .average()
                 .getAsDouble());
-        // кто получит повестку
+    }
+
+    void subpoena(Collection<Student> students) {
         System.out.println(students.stream()
-                .filter(a -> a.getAge() >= 18 && a.getAge() < 27 && a.getGender() == Gender.MAN)
+                .filter(A -> A.getAge() >= 18 && A.getAge() < 27 && A.getGender() == Gender.MAN)
                 .collect(Collectors.toList()));
     }
 
@@ -31,7 +22,7 @@ public class Students {
         WOMAN
     }
 
-    private static class Student {
+    protected static class Student {
         private final String name;
         private final Integer age;
         private final Gender gender;// Sex gender;
