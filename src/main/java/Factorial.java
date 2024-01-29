@@ -2,7 +2,7 @@ import java.math.BigInteger;
 import java.util.stream.IntStream;
 
 public class Factorial {
-    public static int getFactorial(int f) {
+    public int getFactorial(int f) {
         if (f <= 1) {
             return 1;
         }

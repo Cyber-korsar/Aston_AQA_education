@@ -2,22 +2,15 @@ import org.junit.gen5.api.DisplayName;
 import org.junit.gen5.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
 
 public class Main {
-    public static void main(String[] args) {
-        System.out.println(Factorial.getFactorial(20));
-    }
     @Test
-    public static void run (){
-        System.out.println(Factorial.getFactorial(20));
-        Factorial.getFactorial(20);
-
-    }
-    @DisplayName("Слово является палиндромом")
+    @DisplayName("Проверка расчёта факториала")
     @ParameterizedTest
-    @ValueSource(ints = {1,2,3})
-            public void isPalindromeTest(int value){
-        Assertions.assertEquals(Factorial.getFactorial(value),value);
+    @CsvSource({"1,1", "2,2", "6,3", "24,4", "120,5", "720,6", "5040,7"})
+    public void factorialTest(int expectedValue, int actualValue) {
+        Factorial factorial = new Factorial();
+        Assertions.assertEquals(expectedValue, factorial.getFactorial(actualValue));
     }
 }
