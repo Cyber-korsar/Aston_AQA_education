@@ -1,14 +1,14 @@
-
+package utils;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
-public class ConfigReader {
-    private static Properties PROPERTIES;
+public class Config {
+    protected static Properties PROPERTIES;
 
-    public static void configReader(String URLFile) {
-        try (FileInputStream fileInputStream = new FileInputStream(URLFile)) {
+    static {
+        try (FileInputStream fileInputStream = new FileInputStream("src/test/resources/config.properties")) {
             PROPERTIES = new Properties();
             PROPERTIES.load(fileInputStream);
         } catch (FileNotFoundException e) {
@@ -18,8 +18,7 @@ public class ConfigReader {
         }
     }
 
-    public static String getProperty(String URLFile, String key) {
-        configReader(URLFile);
+    public static String getProperty(String key) {
         return PROPERTIES.getProperty(key);
     }
 }
