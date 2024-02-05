@@ -34,7 +34,7 @@ public class MainPage extends BaseForm {
     private String wrapperXPath = "//div[@class='app-wrapper__content']";
 
     public MainPage() {
-        super(new TextField(By.xpath("//*[@class='col-6']/h2"), "page.MainPage"), "Main Page");
+        super(new TextField(By.xpath("//*[@class='col-6']/h2"), "MainPage"), "Main Page");
     }
 
     public String getField() {

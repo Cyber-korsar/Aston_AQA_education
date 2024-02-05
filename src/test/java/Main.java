@@ -26,7 +26,6 @@ public class Main extends BaseTest {
         mainPage.goToLink();
         //проверить загрузку страницы
         MainPage.PaymentOrder paymentOrder = new MainPage.PaymentOrder();
-        paymentOrder.isDisplay();
         assertTrue(paymentOrder.isDisplay(), "Payment Order page is not open");
         DriverUtilits.goBack();
         assertTrue(mainPage.isDisplay(), "Main page is not open");
@@ -35,7 +34,5 @@ public class Main extends BaseTest {
         mainPage.inputSum("10");
         mainPage.clickButtonNext();
         softAssert.assertTrue(mainPage.headerPaymentIsDisplay());
-
-
     }
 }

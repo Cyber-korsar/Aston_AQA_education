@@ -17,7 +17,7 @@ public class BaseElement {
     public final Logger log = Logger.getLogger(BaseForm.class.getName());
     public boolean isDisplay() {
         boolean bool = BrowserFactory.getInstance().findElement(locator).isDisplayed();
-        log.info("Check element isDisplay");
+        log.info("Check element isDisplay " + name);
         return bool;
     }
 
@@ -27,10 +27,13 @@ public class BaseElement {
 
 
     public String getTextFrom() {
-        return BrowserFactory.getInstance().findElement(locator).getText();
+        String text = BrowserFactory.getInstance().findElement(locator).getText();
+        log.info("Get text element \n"+text);
+        return text;
     }
 
     public void sendText(String text) {
+        log.info("Input text \n"+text);
         BrowserFactory.getInstance().findElement(locator).sendKeys(text);
     }
 }

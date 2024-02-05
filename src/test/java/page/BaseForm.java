@@ -14,7 +14,7 @@ public class BaseForm {
     }
 
     public boolean isDisplay() {
-        log.info("Сheck page transition");
+        log.info("Check page transition " + name);
         return element.isDisplay();
     }
 }
