@@ -22,11 +22,11 @@ public class MainPage extends BaseForm {
     private Label masterCard = new Label(By.xpath("//div[@class='pay__partners']//img[@alt='MasterCard']"), "Master Card");
     private Label masterCardSecureCode = new Label(By.xpath("//div[@class='pay__partners']//img[@alt='MasterCard Secure Code']"), "MasterCard Secure Code");
 
-    private Link link = new Link(By.xpath("//div[@class='pay__wrapper']//a"), "Подробнее о сервисе");
-//    private Label belcard = new Label(By.xpath("//div[@class='pay__partners']//img[@alt='Белкарт']"), "Белкарт");
-//    private Label mir = new Label(By.xpath("//div[@class='pay__partners']//img[@alt='МИР']"), "МИР");
-    private Label belcard = new Label(By.xpath("//img[contains(@src,'design/assets/html/images/pages/index/pay/belkart.svg')]"), "Белкарт");
-    private Label mir = new Label(By.xpath("//img[contains(@src,'design/assets/html/images/pages/index/pay/mir.svg')]"), "МИР");
+    private Link link = new Link(By.xpath("//div[@class='pay__wrapper']//a"), "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+    private Label belcard = new Label(By.xpath("//div[@class='pay__partners']//img[@alt='Р‘РµР»РєР°СЂС‚']"), "Р‘РµР»РєР°СЂС‚");
+    private Label mir = new Label(By.xpath("//div[@class='pay__partners']//img[@alt='РњРР ']"), "РњРР ");
+//    private Label belcard = new Label(By.xpath("//img[contains(@src,'design/assets/html/images/pages/index/pay/belkart.svg')]"), "пїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
+//    private Label mir = new Label(By.xpath("//img[contains(@src,'design/assets/html/images/pages/index/pay/mir.svg')]"), "пїЅпїЅпїЅ");
     private Label fieldNumber = new Label(By.xpath("//input[@id='connection-phone']"), "Field phone number");
     private TextField fieldAmount = new TextField(By.xpath("//input[@id='connection-sum']"), "Field Amount");
     private Button button = new Button(By.xpath("//form[@class='pay-form opened']//button[@class='button button__default ']"), "Button next");
