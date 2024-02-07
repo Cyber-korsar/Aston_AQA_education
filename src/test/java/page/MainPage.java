@@ -25,7 +25,7 @@ public class MainPage extends BaseForm {
     private Link link = new Link(By.xpath("//div[@class='pay__wrapper']//a"), "��������� � �������");
     private Label belcard = new Label(By.xpath("//div[@class='pay__partners']//img[@alt='Белкарт']"), "Белкарт");
     private Label mir = new Label(By.xpath("//div[@class='pay__partners']//img[@alt='МИР']"), "МИР");
-//    private Label belcard = new Label(By.xpath("//img[contains(@src,'design/assets/html/images/pages/index/pay/belkart.svg')]"), "�������");
+    //    private Label belcard = new Label(By.xpath("//img[contains(@src,'design/assets/html/images/pages/index/pay/belkart.svg')]"), "�������");
 //    private Label mir = new Label(By.xpath("//img[contains(@src,'design/assets/html/images/pages/index/pay/mir.svg')]"), "���");
     private Label fieldNumber = new Label(By.xpath("//input[@id='connection-phone']"), "Field phone number");
     private TextField fieldAmount = new TextField(By.xpath("//input[@id='connection-sum']"), "Field Amount");
@@ -33,8 +33,52 @@ public class MainPage extends BaseForm {
 
     private String wrapperXPath = "//div[@class='app-wrapper__content']";
 
+    private String dropDownMenu = "(//p[@class='select__option'])[%s]";
+    private Button buttonDropDownMenu = new Button(By.xpath("//button[contains(@class,'select__header')]"), "Button drop down menu");
+
     public MainPage() {
         super(new TextField(By.xpath("//*[@class='col-6']/h2"), "MainPage"), "Main Page");
+    }
+
+    public void clickButtonDropDownMenu() {
+        buttonDropDownMenu.click();
+    }
+
+    private String dropDownXPathCreator(int number) {
+
+        return String.format(dropDownMenu, number);
+    }
+
+    private Label communicationServices() {
+        return new Label(By.xpath(dropDownXPathCreator(1)), "Услуги связи");
+    }
+
+    public String communicationServicesGetText() {
+        return communicationServices().getTextFrom();
+    }
+
+    private Label homeInternet() {
+        return new Label(By.xpath(dropDownXPathCreator(2)), "Домашний интернет");
+    }
+
+    public String homeInternetGetText() {
+        return homeInternet().getTextFrom();
+    }
+
+    private Label installmentPlan() {
+        return new Label(By.xpath(dropDownXPathCreator(3)), "Рассрочка");
+    }
+
+    public String installmentPlanGetText() {
+        return installmentPlan().getTextFrom();
+    }
+
+    private Label debt() {
+        return new Label(By.xpath(dropDownXPathCreator(4)), "Задолженность");
+    }
+
+    public String debtGetText() {
+        return debt().getTextFrom();
     }
 
     public String getField() {
