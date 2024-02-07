@@ -33,7 +33,7 @@ public class BaseElement {
     }
 
     public void sendText(String text) {
-        log.info("Input text \n"+text);
+        log.info("Input text '"+text+"'");
         BrowserFactory.getInstance().findElement(locator).sendKeys(text);
     }
 }
