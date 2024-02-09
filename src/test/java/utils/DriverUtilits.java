@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class DriverUtilits {
     private static final Logger log = Logger.getLogger(DriverUtilits.class.getName());
@@ -26,6 +27,10 @@ public class DriverUtilits {
 
     public static void goBack() {
         BrowserFactory.getInstance().navigate().back();
+    }
+
+    public static void waitElements() {
+        getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
     public static WebDriverWait waitElement(int serconds) {

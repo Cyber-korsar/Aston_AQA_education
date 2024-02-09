@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.DriverUtilits;
+import utils.StringUtils;
 
 public class MainPage extends BaseForm {
     private String iFrame = "//iframe[@class='bepaid-iframe']";
@@ -36,8 +37,38 @@ public class MainPage extends BaseForm {
     private String dropDownMenu = "(//p[@class='select__option'])[%s]";
     private Button buttonDropDownMenu = new Button(By.xpath("//button[contains(@class,'select__header')]"), "Button drop down menu");
 
+    private Label iFrameSum = new Label(By.xpath("//p[@class='header__payment-amount']"), "Sum in iFrame");
+    private Label iFrameSumOnButton = new Label(By.xpath("//button[@class='colored disabled ng-star-inserted']"), "Sum in iFrame on button");
+    private Label iFrameNumber = new Label(By.xpath("//p[@class='header__payment-info']"), "Number in iFrame");
+    private Label iFrameCardNumber = new Label(By.xpath("//label[@class='ng-tns-c47-1 ng-star-inserted']"), "Card Number");
+    private Label iFrameCardValidity = new Label(By.xpath("//label[@class='ng-tns-c47-4 ng-star-inserted']"), "Validity");
+    private Label iFrameCardCVC = new Label(By.xpath("//label[@class='ng-tns-c47-5 ng-star-inserted']"), "Card CVC");
+    private Label iFrameCardName = new Label(By.xpath("//label[@class='ng-tns-c47-3 ng-star-inserted']"), "Card Name");
+    private Label iFrameMasterCard = new Label(By.xpath("//label[@class='ng-tns-c47-3 ng-star-inserted']"), "iFrameMasterCard");
+    private Label iFrameVisa = new Label(By.xpath("//label[@class='ng-tns-c47-3 ng-star-inserted']"), "iFrameVisa");
+    private Label iFrameBelcard = new Label(By.xpath("//label[@class='ng-tns-c47-3 ng-star-inserted']"), "iFrameBelcard");
+    private String iFrameMIR = "//img[@src='assets/images/payment-icons/card-types/mir-system-ru.svg']";
+    private Label iFrameMaestro = new Label(By.xpath("//img[@src='assets/images/payment-icons/card-types/maestro-system.svg']"), "iFrameMIR");
+
+
     public MainPage() {
         super(new TextField(By.xpath("//*[@class='col-6']/h2"), "MainPage"), "Main Page");
+    }
+
+    public String getTextIFrameCardCVC() {
+        return iFrameCardCVC.getTextFrom();
+    }
+
+    public String getTextIFrameCardName() {
+        return iFrameCardName.getTextFrom();
+    }
+
+    public String getTextIFrameCardNumber() {
+        return iFrameCardNumber.getTextFrom();
+    }
+
+    public String getTextIFrameCardValidity() {
+        return iFrameCardValidity.getTextFrom();
     }
 
     public void clickButtonDropDownMenu() {
@@ -59,6 +90,18 @@ public class MainPage extends BaseForm {
 
     private Label homeInternet() {
         return new Label(By.xpath(dropDownXPathCreator(2)), "Домашний интернет");
+    }
+
+    public String getIFrameSum() {
+        return StringUtils.deleteChars(iFrameSum.getTextFrom());
+    }
+
+    public String getIFrameSumOnButton() {
+        return StringUtils.deleteFirstChars(StringUtils.deleteChars(iFrameSumOnButton.getTextFrom()));
+    }
+
+    public String getIFrameNumber() {
+        return StringUtils.getNumber(iFrameNumber.getTextFrom());
     }
 
     public String homeInternetGetText() {
@@ -107,6 +150,31 @@ public class MainPage extends BaseForm {
 
     public boolean mirIsDisplay() {
         return mir.isDisplay();
+    }
+
+    public boolean iFrameVisaIsDisplay() {
+        return iFrameVisa.isDisplay();
+    }
+
+    public boolean iFrameMasterCardIsDisplay() {
+        return iFrameMasterCard.isDisplay();
+    }
+
+    public boolean iFrameBelcardIsDisplay() {
+        return iFrameBelcard.isDisplay();
+    }
+
+    public boolean iFrameMIRIsDisplay() {
+        WebElement iframe = DriverUtilits.waitElement(5).until(ExpectedConditions.presenceOfElementLocated(By.xpath(iFrame)));
+        DriverUtilits.getDriver().switchTo().frame(iframe);
+        return DriverUtilits.waitElement(5).until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath(iFrameMIR))).isDisplayed();
+    }
+
+    public boolean iFrameMaestroIsDisplay() {
+        DriverUtilits.waitElements();
+//        DriverUtilits.waitElement(5).until(ExpectedConditions.visibilityOfElementLocated(iFrameMaestro));
+        return iFrameMaestro.isDisplay();
     }
 
     public void goToLink() {

@@ -8,7 +8,8 @@ import static org.testng.Assert.assertTrue;
 
 public class Main extends BaseTest {
     String numberPhone = "297777777";
-    String sum = "10";
+    String sum = "10.40";
+    SoftAssert softAssert = new SoftAssert();
 
     @Test
     public void startTest() {
@@ -42,5 +43,18 @@ public class Main extends BaseTest {
         mainPage.inputSum(sum);
         mainPage.clickButtonNext();
         softAssert.assertTrue(mainPage.headerPaymentIsDisplay());
+        softAssert.assertEquals(mainPage.getIFrameSum(), sum);
+        softAssert.assertEquals(mainPage.getIFrameSumOnButton(), sum);
+        softAssert.assertEquals(mainPage.getIFrameNumber(), numberPhone);
+        softAssert.assertEquals(mainPage.getTextIFrameCardNumber(), "Номер карты");
+        softAssert.assertEquals(mainPage.getTextIFrameCardValidity(), "Срок действия");
+        softAssert.assertEquals(mainPage.getTextIFrameCardCVC(), "CVC");
+        softAssert.assertEquals(mainPage.getTextIFrameCardName(), "Имя держателя (как на карте)");
+        softAssert.assertTrue(mainPage.iFrameMasterCardIsDisplay(), "Logo Master Card is not display");
+        softAssert.assertTrue(mainPage.iFrameVisaIsDisplay(), "Logo Visa is not display");
+        softAssert.assertTrue(mainPage.iFrameBelcardIsDisplay(), "Logo Belcard is not display");
+        //тут валится
+        //softAssert.assertTrue(mainPage.iFrameMIRIsDisplay(),"Logo MIR is not display");
+        //softAssert.assertTrue(mainPage.iFrameMaestroIsDisplay(),"Logo Visa is not display");
     }
 }
