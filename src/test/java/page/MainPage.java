@@ -11,45 +11,35 @@ import utils.DriverUtilits;
 import utils.StringUtils;
 
 public class MainPage extends BaseForm {
-    private String iFrame = "//iframe[@class='bepaid-iframe']";
-
-    private TextField getTextField = new TextField(By.xpath("//*[@class='pay__wrapper']/h2"), "TextField");
-
-    private Button acceptCookie = new Button(By.xpath("//*[@class='btn btn_black cookie__ok']"), "Click Accept Cookie");
-
-    private Label visa = new Label(By.xpath("//img[@alt='Visa']"), "Visa");
-
-    private Label verifiedVisa = new Label(By.xpath("//img[@alt='Verified By Visa']"), "Verified Visa");
-    private Label masterCard = new Label(By.xpath("//div[@class='pay__partners']//img[@alt='MasterCard']"), "Master Card");
-    private Label masterCardSecureCode = new Label(By.xpath("//div[@class='pay__partners']//img[@alt='MasterCard Secure Code']"), "MasterCard Secure Code");
-
-    private Link link = new Link(By.xpath("//div[@class='pay__wrapper']//a"), "��������� � �������");
-    private Label belcard = new Label(By.xpath("//div[@class='pay__partners']//img[@alt='Белкарт']"), "Белкарт");
-    private Label mir = new Label(By.xpath("//div[@class='pay__partners']//img[@alt='МИР']"), "МИР");
-    //    private Label belcard = new Label(By.xpath("//img[contains(@src,'design/assets/html/images/pages/index/pay/belkart.svg')]"), "�������");
-//    private Label mir = new Label(By.xpath("//img[contains(@src,'design/assets/html/images/pages/index/pay/mir.svg')]"), "���");
-    private Label fieldNumber = new Label(By.xpath("//input[@id='connection-phone']"), "Field phone number");
-    private TextField fieldAmount = new TextField(By.xpath("//input[@id='connection-sum']"), "Field Amount");
-    private Button button = new Button(By.xpath("//form[@class='pay-form opened']//button[@class='button button__default ']"), "Button next");
-
-    private String wrapperXPath = "//div[@class='app-wrapper__content']";
-
-    private String dropDownMenu = "(//p[@class='select__option'])[%s]";
-    private Button buttonDropDownMenu = new Button(By.xpath("//button[contains(@class,'select__header')]"), "Button drop down menu");
-
-    private Label iFrameSum = new Label(By.xpath("//p[@class='header__payment-amount']"), "Sum in iFrame");
-    private Label iFrameSumOnButton = new Label(By.xpath("//button[@class='colored disabled ng-star-inserted']"), "Sum in iFrame on button");
-    private Label iFrameNumber = new Label(By.xpath("//p[@class='header__payment-info']"), "Number in iFrame");
-    private Label iFrameCardNumber = new Label(By.xpath("//label[@class='ng-tns-c47-1 ng-star-inserted']"), "Card Number");
-    private Label iFrameCardValidity = new Label(By.xpath("//label[@class='ng-tns-c47-4 ng-star-inserted']"), "Validity");
-    private Label iFrameCardCVC = new Label(By.xpath("//label[@class='ng-tns-c47-5 ng-star-inserted']"), "Card CVC");
-    private Label iFrameCardName = new Label(By.xpath("//label[@class='ng-tns-c47-3 ng-star-inserted']"), "Card Name");
-    private Label iFrameMasterCard = new Label(By.xpath("//label[@class='ng-tns-c47-3 ng-star-inserted']"), "iFrameMasterCard");
-    private Label iFrameVisa = new Label(By.xpath("//label[@class='ng-tns-c47-3 ng-star-inserted']"), "iFrameVisa");
-    private Label iFrameBelcard = new Label(By.xpath("//label[@class='ng-tns-c47-3 ng-star-inserted']"), "iFrameBelcard");
-    private String iFrameMIR = "//img[@src='assets/images/payment-icons/card-types/mir-system-ru.svg']";
-    private Label iFrameMaestro = new Label(By.xpath("//img[@src='assets/images/payment-icons/card-types/maestro-system.svg']"), "iFrameMIR");
-
+    private final String iFrame = "//iframe[@class='bepaid-iframe']";
+    private final TextField getTextField = new TextField(By.xpath("//*[@class='pay__wrapper']/h2"), "TextField");
+    private final Button acceptCookie = new Button(By.xpath("//button[@class='btn btn_black cookie__ok']"), "Click Accept Cookie");
+    private final Label visa = new Label(By.xpath("//img[@alt='Visa']"), "Visa");
+    private final Label verifiedVisa = new Label(By.xpath("//img[@alt='Verified By Visa']"), "Verified Visa");
+    private final Label masterCard = new Label(By.xpath("(//div[@class='pay__partners'])//li[3]"), "Master Card");
+    private final Label masterCardSecureCode = new Label(By.xpath("(//div[@class='pay__partners'])//li[4]"), "MasterCard Secure Code");
+    private final Link link = new Link(By.xpath("//div[@class='pay__wrapper']//a"), "Подробнее о сервисе");
+    private final Label belcard = new Label(By.xpath("(//div[@class='pay__partners'])//li[5]"), "Белкарт");
+    private final Label mir = new Label(By.xpath("//div[@class='pay__partners']//img[@alt='МИР']"), "МИР");
+    private final Label fieldNumber = new Label(By.xpath("//input[@id='connection-phone']"), "Field phone number");
+    private final TextField fieldAmount = new TextField(By.xpath("//input[@id='connection-sum']"), "Field Amount");
+    private final Button button = new Button(By.xpath("(//button[@class='button button__default '])[1]"), "Button next");
+    private final String wrapperXPath = "//div[@class='app-wrapper__content']";
+    private final String dropDownMenu = "(//p[@class='select__option'])[%s]";
+    private final Button buttonDropDownMenu = new Button(By.xpath("//button[contains(@class,'select__header')]"), "Button drop down menu");
+    private final Label iFrameSum = new Label(By.xpath("//p[@class='header__payment-amount']"), "Sum in iFrame");
+    private final Label iFrameSumOnButton = new Label(By.xpath("//button[@class='colored disabled ng-star-inserted']"), "Sum in iFrame on button");
+    private final Label iFrameNumber = new Label(By.xpath("//p[@class='header__payment-info']"), "Number in iFrame");
+    private final Label iFrameCardNumber = new Label(By.xpath("//label[@class='ng-tns-c47-1 ng-star-inserted']"), "Card Number");
+    private final Label iFrameCardValidity = new Label(By.xpath("//label[@class='ng-tns-c47-4 ng-star-inserted']"), "Validity");
+    private final Label iFrameCardCVC = new Label(By.xpath("//label[@class='ng-tns-c47-5 ng-star-inserted']"), "Card CVC");
+    private final Label iFrameCardName = new Label(By.xpath("//label[@class='ng-tns-c47-3 ng-star-inserted']"), "Card Name");
+    private final Label iFrameMasterCard = new Label(By.xpath("//label[@class='ng-tns-c47-3 ng-star-inserted']"), "iFrameMasterCard");
+    private final Label iFrameVisa = new Label(By.xpath("//label[@class='ng-tns-c47-3 ng-star-inserted']"), "iFrameVisa");
+    private final Label iFrameBelcard = new Label(By.xpath("//label[@class='ng-tns-c47-3 ng-star-inserted']"), "iFrameBelcard");
+    // private String iFrameMIR = "//img[@src='assets/images/payment-icons/card-types/mir-system-ru.svg']";
+    private final Label iFrameMaestro = new Label(By.xpath("//img[@src='assets/images/payment-icons/card-types/maestro-system.svg']"), "iFrameMaestro");
+    private final Label iFrameMIR = new Label(By.xpath("(//img[@src='assets/images/payment-icons/card-types/mir-system-ru.svg'])[1]"), "iFrameMIR");
 
     public MainPage() {
         super(new TextField(By.xpath("//*[@class='col-6']/h2"), "MainPage"), "Main Page");
@@ -76,7 +66,6 @@ public class MainPage extends BaseForm {
     }
 
     private String dropDownXPathCreator(int number) {
-
         return String.format(dropDownMenu, number);
     }
 
@@ -165,15 +154,12 @@ public class MainPage extends BaseForm {
     }
 
     public boolean iFrameMIRIsDisplay() {
-        WebElement iframe = DriverUtilits.waitElement(5).until(ExpectedConditions.presenceOfElementLocated(By.xpath(iFrame)));
-        DriverUtilits.getDriver().switchTo().frame(iframe);
-        return DriverUtilits.waitElement(5).until(ExpectedConditions.visibilityOfElementLocated(
-                By.xpath(iFrameMIR))).isDisplayed();
+        DriverUtilits.waitElements();
+        return iFrameMIR.isDisplay();
     }
 
     public boolean iFrameMaestroIsDisplay() {
         DriverUtilits.waitElements();
-//        DriverUtilits.waitElement(5).until(ExpectedConditions.visibilityOfElementLocated(iFrameMaestro));
         return iFrameMaestro.isDisplay();
     }
 

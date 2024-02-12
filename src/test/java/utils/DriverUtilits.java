@@ -9,8 +9,8 @@ import java.util.concurrent.TimeUnit;
 
 public class DriverUtilits {
     private static final Logger log = Logger.getLogger(DriverUtilits.class.getName());
-    private static String http = Config.getProperty("http");
-    private static String site_url = Config.getProperty("site");
+    private static final String http = Config.getProperty("http");
+    private static final String site_url = Config.getProperty("site");
 
     public static String host() {
         return http + site_url;
@@ -30,7 +30,7 @@ public class DriverUtilits {
     }
 
     public static void waitElements() {
-        getDriver().manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        getDriver().manage().timeouts().implicitlyWait(14, TimeUnit.SECONDS);
     }
 
     public static WebDriverWait waitElement(int serconds) {

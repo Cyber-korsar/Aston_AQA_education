@@ -6,11 +6,13 @@ import utils.DriverUtilits;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class Main extends BaseTest {
+public class MainTest extends BaseTest {
     String numberPhone = "297777777";
     String sum = "10.40";
-    SoftAssert softAssert = new SoftAssert();
 
+    public static void main(String[] args) {
+        System.out.println("sdgfsdf");
+    }
     @Test
     public void startTest() {
         MainPage mainPage = new MainPage();
@@ -53,8 +55,8 @@ public class Main extends BaseTest {
         softAssert.assertTrue(mainPage.iFrameMasterCardIsDisplay(), "Logo Master Card is not display");
         softAssert.assertTrue(mainPage.iFrameVisaIsDisplay(), "Logo Visa is not display");
         softAssert.assertTrue(mainPage.iFrameBelcardIsDisplay(), "Logo Belcard is not display");
-        //тут валится
-        //softAssert.assertTrue(mainPage.iFrameMIRIsDisplay(),"Logo MIR is not display");
-        //softAssert.assertTrue(mainPage.iFrameMaestroIsDisplay(),"Logo Visa is not display");
+        softAssert.assertTrue(mainPage.iFrameMaestroIsDisplay(), "Logo Maestro is not display");
+        //тут валится и не знаю почему
+      //  softAssert.assertTrue(mainPage.iFrameMIRIsDisplay(), "Logo MIR is not display");
     }
 }

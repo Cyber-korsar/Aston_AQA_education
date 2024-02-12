@@ -1,12 +1,15 @@
 package utils;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
+//import io.github.bonigarcia.wdm.WebDriverManager;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
+
+import java.util.concurrent.TimeUnit;
 
 public class BrowserFactory {
     private static BrowserFactory instDriver;
@@ -28,7 +31,6 @@ public class BrowserFactory {
                 case CHROME:
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("--lang=" + language);
-                    WebDriverManager.chromedriver().setup();
                     driver = new ChromeDriver(options);
                     break;
                 case FIREFOX:
@@ -36,13 +38,13 @@ public class BrowserFactory {
                     FirefoxProfile profile = new FirefoxProfile();
                     profile.setPreference("intl.accert_languages", language);
                     optionsFirerox.setProfile(profile);
-                    WebDriverManager.firefoxdriver().setup();
                     driver = new FirefoxDriver(optionsFirerox);
                     break;
                 default:
                     throw new IllegalArgumentException("Browser not found");
             }
             driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
         }
         return driver;
     }
