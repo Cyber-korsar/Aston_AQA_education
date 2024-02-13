@@ -53,7 +53,6 @@ public class MainTest extends BaseTest {
         softAssert.assertTrue(mainPage.iFrameVisaIsDisplay(), "Logo Visa is not display");
         softAssert.assertTrue(mainPage.iFrameBelcardIsDisplay(), "Logo Belcard is not display");
         softAssert.assertTrue(mainPage.iFrameMaestroIsDisplay(), "Logo Maestro is not display");
-        //тут валится и не знаю почему
         softAssert.assertTrue(mainPage.iFrameMIRIsDisplay(), "Logo MIR is not display");
     }
 }

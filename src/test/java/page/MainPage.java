@@ -39,7 +39,7 @@ public class MainPage extends BaseForm {
     private final Label iFrameBelcard = new Label(By.xpath("//label[@class='ng-tns-c47-3 ng-star-inserted']"), "iFrameBelcard");
     // private String iFrameMIR = "//img[@src='assets/images/payment-icons/card-types/mir-system-ru.svg']";
     private final Label iFrameMaestro = new Label(By.xpath("//img[@src='assets/images/payment-icons/card-types/maestro-system.svg']"), "iFrameMaestro");
-    private final Label iFrameMIR = new Label(By.xpath("(//img[@src='assets/images/payment-icons/card-types/mir-system-ru.svg'])[1]"), "iFrameMIR");
+    private final Label iFrameMIR = new Label(By.xpath("//img[contains(@src,'mir-')]"), "iFrameMIR");
 
     public MainPage() {
         super(new TextField(By.xpath("//*[@class='col-6']/h2"), "MainPage"), "Main Page");
@@ -154,7 +154,6 @@ public class MainPage extends BaseForm {
     }
 
     public boolean iFrameMIRIsDisplay() {
-        DriverUtilits.waitElements();
         return iFrameMIR.isDisplay();
     }
 
