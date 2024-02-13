@@ -2,8 +2,11 @@ package elements;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import page.BaseForm;
 import utils.BrowserFactory;
+import utils.DriverUtilits;
 
 public class BaseElement {
 
@@ -37,5 +40,10 @@ public class BaseElement {
     public void sendText(String text) {
         log.info("Input text '" + text + "'");
         BrowserFactory.getInstance().findElement(locator).sendKeys(text);
+    }
+
+    public void hoverAction() {
+        Actions actions = new Actions(DriverUtilits.getDriver());
+        actions.moveToElement((WebElement) locator);
     }
 }

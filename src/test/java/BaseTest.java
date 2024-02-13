@@ -10,8 +10,8 @@ public class BaseTest {
     public void beforeStart() {
         BrowserFactory.getInstance();
     }
-    @AfterClass
-    public void afterStart() {
-        BrowserFactory.getInstance().quit();
-    }
+//    @AfterClass
+//    public void afterStart() {
+//        BrowserFactory.getInstance().quit();
+//    }
 }
