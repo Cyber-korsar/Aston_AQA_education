@@ -4,78 +4,113 @@ import elements.Button;
 import elements.Label;
 import elements.TextField;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.BrowserFactory;
-import utils.DriverUtilits;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MainPage extends BaseForm {
-
     public MainPage() {
         super(new TextField(By.xpath("//div[contains(@class,'main-page__banner banner')]"), "Banner on Main Page"), "Main Page");
     }
 
-    private final Label mainPageBanner = new Label(By.xpath("//div[contains(@class,'main-page__banner banner')]"), "Banner on Main Page");
-    private String addToBasket_X = "(//a[@class='product-card__add-basket j-add-to-basket btn-main'])[%s]";
-    private String nameProduct_X = "(//span[@class='product-card__name'])[%s]";
-    private String priceProduct_X = "(//ins[@class='price__lower-price wallet-price'])[%s]";
+    private List<String> products;
+    private List<String> prices;
+    private final Label productTable = new Label(By.xpath("//div[@class='main-page__content']"), "Product table");
+    private static final By ADD_TO_BASKET = By.xpath("(//a[@class='product-card__add-basket j-add-to-basket btn-main'])");
+    private static final By PRICE = By.xpath("(//ins[@class='price__lower-price'])");
+    private static final By NAME = By.xpath("//span[@class='product-card__name']");
     private final Button alwaysFirstSize = new Button(By.xpath("(//ul[@class='sizes-list j-quick-order-sizes'])//li[1]"), "Always first size");
     private final Button buttonBasket = new Button(By.xpath("//a[@data-wba-header-name='Cart']"), "Button cart");
-    private String authorization = "//span[contains(@class,'navbar-pc__icon navbar-pc__icon--profile')]";
-    private final Button changeCurrency = new Button(By.xpath("//button[contains(@class,'profile-menu__link profile-menu__link--currency j-wba-header-user-item j-currency-show-popup')]"), "Change Currency");
+    private static final By AUTHORIZATION = By.xpath("//span[contains(@class,'navbar-pc__icon navbar-pc__icon--profile')]");
+    private static Button aut = new Button(By.xpath("//span[contains(@class,'navbar-pc__icon navbar-pc__icon--profile')]"), "Button authorization");
+    private final Button changeCurrency = new Button(By.xpath("//button[contains(@data-wba-header-name,'Country')]"), "Change Currency");
     private final Button currencyBYN = new Button(By.xpath("//span[contains(.,'BYN')]"), "BYN Currency");
 
-    private static Label generateXPAthProductCard(String XPath, int count, String name) {
-        return new Label(By.xpath(String.format(XPath, count)), name);
+    public int getCountProduct() {
+        return products.size();
     }
 
-    private static Button generateXPAthProductButton(String XPath, int count, String name) {
-        return new Button(By.xpath(String.format(XPath, count)), name);
+    public String getProductName(int index) {
+        return products.get(index);
     }
 
-    public void clickButtonAddToBasket_X(int number) {
-        generateXPAthProductButton(addToBasket_X, number, "Add to basket").click();
+    public double getSum() {
+        return prices.stream().mapToDouble(Double::parseDouble).sum();
     }
 
-    public String getNameProduct(int number) {
-        return generateXPAthProductCard(nameProduct_X, number, "Name product").getTextFrom();
-    }
-
-    public String getPriceProduct(int number) {
-        return generateXPAthProductCard(priceProduct_X, number, "Price product").getTextFrom();
+    public Double getProductPrice(int index) {
+        return Double.parseDouble(prices.get(index));
     }
 
     public void clickButtonChangeCurrency() {
+        changeCurrency.waitPollingEvery100ms(5);
         changeCurrency.click();
     }
 
+    public boolean changeCurrencyIsDisplay() {
+        return changeCurrency.isDisplay();
+    }
+
     public void clickButtonBYNCurrency() {
+        currencyBYN.waitPollingEvery100ms(5);
         currencyBYN.click();
+    }
+
+    public boolean buttonBYNCurrencyIsDisplay() {
+        return currencyBYN.isDisplay();
     }
 
     public void hoverAction() {
         Actions actions = new Actions(BrowserFactory.getInstance());
-        actions.moveToElement(DriverUtilits.findXPathElement(authorization)).build().perform();
+        actions.moveToElement(driver.findElement(AUTHORIZATION)).build().perform();
     }
 
-    public void addToBasket_X_Product(int count){
-                try {
-            Thread.sleep(1000);
+    public boolean authorizationIsDistlay() {
+        return driver.findElement(AUTHORIZATION).isDisplayed();
+    }
+
+    public void clickBasketButton() {
+        buttonBasket.click();
+    }
+
+    public boolean buttonBasketIsDisplay() {
+        return buttonBasket.isDisplay();
+    }
+
+    public MainPage addToBasketManyProducts(int count) {
+        try {
+            Thread.sleep(1500);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        int i = 1;
-        while (i <= count) {
-
-            clickButtonAddToBasket_X(i);
-            try {
-                Thread.sleep(500);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-            if (alwaysFirstSize.isDisplay()){alwaysFirstSize.click();}
-                        i++;
-        }
+        products = driver.findElements(NAME).stream()
+                .limit(count)
+                .map(p -> p.getText()
+                        .split("/")[0].trim())
+                .collect(Collectors.toList());
+        List<WebElement> price = driver.findElements(PRICE);
+        prices = price.stream()
+                .limit(count)
+                .map(p -> p.getText()
+                        .split("р.")[0].replaceAll(",", "."))
+                .collect(Collectors.toList());
+        driver.findElements(ADD_TO_BASKET)
+                .stream()
+                .limit(count)
+                .forEach(this::clickAddToBasket);
+        log.info("Products added to cart");
+        return this;
     }
 
+    private void clickAddToBasket(WebElement button) {
+        button.click();
+        try {
+            alwaysFirstSize.click();
+        } catch (NoSuchElementException ignored) {
+        }
+    }
 }

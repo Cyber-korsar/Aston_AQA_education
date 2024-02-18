@@ -2,11 +2,18 @@ package elements;
 
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 import page.BaseForm;
 import utils.BrowserFactory;
 import utils.DriverUtilits;
+
+import java.time.Duration;
 
 public class BaseElement {
 
@@ -30,20 +37,11 @@ public class BaseElement {
         BrowserFactory.getInstance().findElement(locator).click();
     }
 
+    public void waitPollingEvery100ms(int seconds){
+        Wait<WebDriver> wait = new FluentWait<>(DriverUtilits.getDriver()).withTimeout(Duration.ofSeconds(seconds))
+                .pollingEvery(Duration.ofMillis(100))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.visibilityOf(DriverUtilits.getDriver().findElement(locator)));
 
-    public String getTextFrom() {
-        String text = BrowserFactory.getInstance().findElement(locator).getText();
-        log.info("Get text element \n" + text);
-        return text;
-    }
-
-    public void sendText(String text) {
-        log.info("Input text '" + text + "'");
-        BrowserFactory.getInstance().findElement(locator).sendKeys(text);
-    }
-
-    public void hoverAction() {
-        Actions actions = new Actions(DriverUtilits.getDriver());
-        actions.moveToElement((WebElement) locator);
     }
 }
