@@ -1,148 +1,69 @@
 package org.example;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.pagefactory.AppiumFieldDecorator;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+
+import org.example.utils.Driver;
+import org.openqa.selenium.By;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CalcScreen {
+    String basePath = "com.google.android.calculator:id/%s";
+    String digitPath = "com.google.android.calculator:id/digit_%d";
+    private final By MULTIPLY = By.id(String.format(basePath, "op_mul"));
 
-//    @FindBy(id= Setup.PACKAGE_ID+":id/digit_0")
-//    AndroidElement btn0;
-//    @FindBy(id=Setup.PACKAGE_ID+":id/digit_1")
-//    AndroidElement btn1;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/digit_2")
-//    AndroidElement btn2;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/digit_3")
-//    AndroidElement btn3;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/digit_4")
-//    AndroidElement btn4;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/digit_5")
-//    AndroidElement btn5;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/digit_6")
-//    AndroidElement btn6;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/digit_7")
-//    AndroidElement btn7;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/digit_8")
-//    AndroidElement btn8;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/digit_9")
-//    AndroidElement btn9;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/op_add")
-//    AndroidElement btnPlus;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/op_sub")
-//    AndroidElement btnMinus;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/op_div")
-//    AndroidElement btnDiv;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/op_mul")
-//    AndroidElement btnMul;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/op_pct")
-//    AndroidElement btnPercentage;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/eq")
-//    AndroidElement btnEqual;
-//
-//    @FindBy(id=Setup.PACKAGE_ID+":id/clr")
-//    AndroidElement btnClear;
-//
-//    @FindBy(id = Setup.PACKAGE_ID+":id/result_final")
-//    AndroidElement resultFinal;
-//
-//    public CalcScreen(AndroidDriver driver){
-//        PageFactory.initElements(new AppiumFieldDecorator(driver),this);
-//
-//    }
-//    public String doSum() throws InterruptedException {
-//        Thread.sleep(2000);
-//        btn9.click();
-//
-//        btnPlus.click();
-//
-//        btn5.click();
-//
-//        btnEqual.click();
-//        return resultFinal.getText();
-//    }
-//
-//    public String doSub() throws InterruptedException {
-//        Thread.sleep(2000);
-//        btn8.click();
-//
-//        btnMinus.click();
-//
-//        btn3.click();
-//
-//        btnEqual.click();
-//        return resultFinal.getText();
-//    }
-//
-//    public String doMul() throws InterruptedException {
-//        Thread.sleep(2000);
-//        btn1.click();
-//        btn4.click();
-//
-//        btnMul.click();
-//
-//        btn5.click();
-//
-//        btnEqual.click();
-//        return resultFinal.getText();
-//    }
-//
-//    public String doDiv() throws InterruptedException {
-//        Thread.sleep(2000);
-//        btn7.click();
-//        btn0.click();
-//
-//        btnDiv.click();
-//
-//        btn1.click();
-//        btn0.click();
-//
-//        btnEqual.click();
-//        return resultFinal.getText();
-//    }
-//
-//    public String doSeries() throws InterruptedException {
-//        Thread.sleep(2000);
-//        btn1.click();
-//        btn0.click();
-//        btn0.click();
-//
-//        btnPlus.click();
-//
-//        btn2.click();
-//        btn0.click();
-//        btn0.click();
-//
-//        btnMinus.click();
-//
-//        btn1.click();
-//        btn0.click();
-//        btn0.click();
-//
-//        btnMul.click();
-//
-//        btn2.click();
-//
-//        btnDiv.click();
-//
-//        btn5.click();
-//
-//        btnEqual.click();
-//        return resultFinal.getText();
-//    }
+    private final By DIVIDE = By.id(String.format(basePath, "op_div"));
+    private final By MINUS = By.id(String.format(basePath, "op_sub"));
+    private final By PLUS = By.id(String.format(basePath, "op_add"));
+    private final By EQUALS = By.id(String.format(basePath, "eq"));
+    private final By CLEAR = By.id(String.format(basePath, "clr"));
+    private final By RESULT_FINAL = By.id(String.format(basePath, "result_final"));
+    private final By DEC_POINT = By.id(String.format(basePath, "dec_point"));
 
+    public void clickDigit(int number) {
+        String n = Integer.toString(number);
+        char[] charArray = n.toCharArray();
+        List<Integer> cia = new ArrayList<Integer>();
+        for (int i = 0; i < charArray.length; i++) {
+            int digit = Character.getNumericValue(charArray[i]);
+            cia.add(digit);
+            Driver.getDriver().findElementById(String.format(digitPath, digit)).click();
+        }
+    }
+
+    public void clickMultiply() {
+        Driver.getDriver().findElement(MULTIPLY).click();
+    }
+
+    public void clickDivide() {
+        Driver.getDriver().findElement(DIVIDE).click();
+    }
+
+    public void clickMinus() {
+        Driver.getDriver().findElement(MINUS).click();
+    }
+
+    public void clickPlus() {
+        Driver.getDriver().findElement(PLUS).click();
+    }
+
+    public void clickEquals() {
+        Driver.getDriver().findElement(EQUALS).click();
+    }
+
+    public Double getEquals() {
+        Driver.getDriver().findElement(RESULT_FINAL).getText();
+        return Double.parseDouble(Driver.getDriver().findElement(RESULT_FINAL).getText());
+    }
+
+    public String getEqualsText() {
+        return Driver.getDriver().findElement(RESULT_FINAL).getText();
+    }
+
+    public void clickClear() {
+        Driver.getDriver().findElement(CLEAR).click();
+    }
+
+    public void clickDecPoint() {
+        Driver.getDriver().findElement(DEC_POINT).click();
+    }
 }

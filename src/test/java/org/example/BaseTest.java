@@ -1,18 +1,13 @@
 package org.example;
 
-import io.restassured.specification.RequestSpecification;
-import io.restassured.specification.ResponseSpecification;
-import org.example.utils.Config;
-
-import static io.restassured.RestAssured.expect;
-import static io.restassured.RestAssured.given;
+import io.appium.java_client.android.AndroidDriver;
+import org.example.utils.Driver;
 
 public class BaseTest {
-    RequestSpecification baseSpecification = given()
-            .log().body()
-            .baseUri(Config.getProperty("URL"));
-
-    ResponseSpecification statusCode = expect()
-            .statusCode(Integer.parseInt(Config.getProperty("statusOK")));
+   public AndroidDriver driver = new Driver().getDriver();
+//    @BeforeTest
+    public AndroidDriver init(){
+        return new Driver().getDriver();
+    }
 
 }
