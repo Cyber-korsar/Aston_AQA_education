@@ -1,9 +1,7 @@
 package org.example.utils;
 
 
-import com.google.common.annotations.VisibleForTesting;
 import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.remote.AndroidMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
@@ -14,11 +12,13 @@ import java.util.concurrent.TimeUnit;
 
 public class Driver {
     private static AndroidDriver driver;
-    public static AndroidDriver getDriver(){
+
+    public static AndroidDriver getDriver() {
         if (driver == null)
             driver = initialize();
         return driver;
     }
+
     public static AndroidDriver initialize() {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(MobileCapabilityType.DEVICE_NAME, "Pixel_3a");
@@ -29,7 +29,7 @@ public class Driver {
         capabilities.setCapability(MobileCapabilityType.NO_RESET, true);
         try {
             URL url = new URL("http://127.0.0.1:4723/wd/hub");
-            driver = new AndroidDriver<>(url,capabilities);
+            driver = new AndroidDriver(url, capabilities);
             driver.manage().timeouts().implicitlyWait(10,
                     TimeUnit.SECONDS);
             return driver;

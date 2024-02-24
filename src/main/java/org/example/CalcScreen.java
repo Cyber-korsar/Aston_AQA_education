@@ -3,9 +3,6 @@ package org.example;
 import org.example.utils.Driver;
 import org.openqa.selenium.By;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class CalcScreen {
     String basePath = "com.google.android.calculator:id/%s";
     String digitPath = "com.google.android.calculator:id/digit_%d";
@@ -22,10 +19,10 @@ public class CalcScreen {
     public void clickDigit(int number) {
         String n = Integer.toString(number);
         char[] charArray = n.toCharArray();
-        List<Integer> cia = new ArrayList<Integer>();
+        //List<Integer> cia = new ArrayList<Integer>();
         for (int i = 0; i < charArray.length; i++) {
             int digit = Character.getNumericValue(charArray[i]);
-            cia.add(digit);
+            //   cia.add(digit);
             Driver.getDriver().findElementById(String.format(digitPath, digit)).click();
         }
     }
