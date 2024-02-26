@@ -10,7 +10,6 @@ public class CalculatorTest extends BaseTest {
 
     @Test
     public void testBasicArithmeticOperations() {
-
         calcScreen.clickDigit(2);
         calcScreen.clickPlus();
         calcScreen.clickDigit(2);
